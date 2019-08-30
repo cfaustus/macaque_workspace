@@ -1,12 +1,21 @@
-#SYMPATRIC MACAQUE SPECIES
-#getting shapefiles
-library(sp)
+#MAPS
+
+## Libraries
+library(maps)
+library(mapdata)
+library(maptools)
+library(scales)
 library(rgdal)
-# data <- readOGR("/Users/cfaust/Dropbox/MAMMTERR", "MAMMTERR") 
+library(sp)
+
+
+#########
+#getting shapefiles
+# data = readOGR("/Users/cfaust/Dropbox/MAMMTERR", "MAMMTERR") 
 # names(data)
-# unique <- unique(data@data$BINOMIAL)
-# sympmac<-c("Macaca fascicularis", "Macaca nemestrina", "Macaca arctoides")
-# sympmacID<-match(sympmac, data@data$BINOMIAL)
+# unique = unique(data@data$BINOMIAL)
+# sympmac = c("Macaca fascicularis", "Macaca nemestrina", "Macaca arctoides")
+# sympmacID = match(sympmac, data@data$BINOMIAL)
 # 
 # macs<-match(sympmac, unique)
 # macs<-sort(macs)
@@ -17,13 +26,12 @@ library(rgdal)
 #            unique[i], driver="ESRI Shapefile",overwrite_layer=TRUE)
 # }
 
+### Phenotyp
 
-## Libraries
-library(maps)
-library(mapdata)
-library(maptools)
-library(scales)
-library(rgdal)
+
+
+
+### Range overlap
 
 setwd("~/Dropbox/Projects/SimianMalaria/AlphaGlobinOX/macaque_workspace")
 
