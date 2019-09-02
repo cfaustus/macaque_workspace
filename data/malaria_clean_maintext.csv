@@ -1,7 +1,7 @@
-region,N,mal_inf,mal_other,mal_inf_vir,mal_none,mal_unknown
-Bali,60,0,0,0,60,0
-Cambodia,51,13,13,0,38,0
-Java,114,9,7,1,105,1
-PeninsularMalaysia,729,296,212,42,433,42
-Singapore,13,3,0,0,10,3
-Thailand,315,20,6,7,295,7
+region,N,mal_inf,no malaria,non-virulent malaria,virulent malaria,unknown malaria
+Thailand,315,20,295,6,7,7
+Cambodia,51,13,38,13,0,0
+PeninsularMalaysia,729,296,433,212,42,42
+Singapore,13,3,10,0,3,0
+Java,114,9,105,7,1,1
+Bali,60,0,60,0,0,0
