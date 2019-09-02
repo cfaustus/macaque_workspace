@@ -77,7 +77,8 @@ singapore = readOGR("data/SGP_adm/SGP_adm0.shp")
 thailand = readOGR("data/THA_adm/THA_adm0.shp")
 indonesia = readOGR("data/IDN_adm/IDN_adm1.shp")
 bali = indonesia[indonesia$NAME_1 == 'Bali',]
-java_names = c('Jakarta Raya','Jawa Tengah', 'Jawa Barat', 'Jawa Timur')
+java_names = c('Jakarta Raya','Jawa Tengah', 'Jawa Barat', 'Jawa Timur',
+               'Banten', 'Yogyakarta')
 java = indonesia[indonesia$NAME_1 %in% java_names,]
 malaysia = readOGR('data/MYS_adm/MYS_adm1.shp')
 borneo_names = c('Sabah', 'Sarawak')
@@ -88,22 +89,35 @@ vir_countries = bind(cambodia, singapore, bali, thailand, java, pen_malay)
 fascicularis_range=readOGR("data/Macaca fascicularis.shp")
 monkey_vir = intersect(fascicularis_range,vir_countries)
 
+map("world", xlim=c(93,130), ylim=c(-11.5,23), 
+    col="gray90", fill=TRUE)
 
-# c('A','Q','P','AQ','AP','AQP',
-#   'QP','AX','AQX','APX','QPX'), 
-col_pal = c('#2166ac','#fddbc7','#b2182b','#67a9cf','#ef8a62','#d1e5f0')
+plot(fascicularis_range, add=TRUE, col=alpha("grey10",0.3), border=FALSE)
+plot(monkey_vir, add=TRUE, col=alpha("darkred",0.5), border=FALSE)
+legend(110, 16.3, 
+       title = 'ranges ',
+       c('M. fascicularis', 'malaria surveys'), 
+       fill = c('grey70', 'darkred'),
+       bty = 'o', box.col = 'white',cex = 0.7)
 
-
-mosaicplot(x[,2:4], main = 'Proportions')
+malaria = read.csv("data/malaria_clean_maintext.csv", header =T)
+head(malaria)
+malaria$region
+mal_tab = malaria[,4:7]
+dimnames(mal_tab)[[1]] <- c("Cambodia",'Thailand','PeninsularMalaysia', 
+                            'Singapore', "Java", "Bali")
+mosaicplot(mal_tab, main ='',
+           col= c('white','gray80', 'gray50', 'darkred'), 
+           las = 4)
 
 ### Range overlap
 
 setwd("~/Dropbox/Projects/SimianMalaria/AlphaGlobinOX/macaque_workspace")
 
 #Import shapefiles
-fascicularis_range=readOGR("data/Macaca fascicularis.shp")
-nemestrina_range=readOGR("data/Macaca nemestrina.shp")
-arctoides_range=readOGR("data/Macaca arctoides.shp")
+fascicularis_range=readOGR("data/macaques/Macaca fascicularis.shp")
+nemestrina_range=readOGR("data/macaques/Macaca nemestrina.shp")
+arctoides_range=readOGR("data/macaques/Macaca arctoides.shp")
 
 #SEAsia map
 map('world', xlim=c(90,150),ylim=c(-12,30))
