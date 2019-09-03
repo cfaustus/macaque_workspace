@@ -13,6 +13,8 @@ keyDT <- fread('data/sample_barcode_relative.csv',check.names=TRUE)
 keyDT[,c('barcode_seq','relative'):=NULL]
 setnames(keyDT,c('Sample.ID','barcode_ID'),c('subject_id','subject'))
 
+#########
+#alpha-1#
 # load alpha-1 data
 # DT1 <- fread(file.path('data/alpha-1 pooled.csv'))
 # unique(DT1$PCR)
@@ -21,20 +23,6 @@ setnames(keyDT,c('Sample.ID','barcode_ID'),c('subject_id','subject'))
 DT1 = fread(file.path('data/mm2f_alpha1_pooled.csv'))
 head(DT1)
 DT1 = DT1[keyDT,on='subject',nomatch=0]
-
-#load alpha-2 data
-# DT2 <- fread(file.path('data/alpha-2 pooled.csv'))
-# DT2 <- DT2[PCR=='MM2F_S3R']
-# write.csv(DT2,'data/mm2f_alpha2_pooled.csv', row.names = F)
-
-DT2 = fread(file.path('data/mm2f_alpha2_pooled.csv'))
-DT2 = DT2[keyDT,on='subject',nomatch=0] # match barcode to macaque id 
-head(DT2)
-#########
-#alpha-1#
-#########
-head(DT1)
-#examine reads/sample
 p = ggplot(DT1[,.(value=sum(value)),by=subject],aes(value))
 p
 p+geom_histogram()
@@ -66,10 +54,17 @@ write.csv(fDT1_wide, 'output/alpha1_exon2_freqtable_less2andlowcountremoved.csv'
 length(fDT1[,unique(uniqueseq)])
 # 13 number of alleles left in cleaned
 
-
 #########
 #alpha-2#
 #########
+#load alpha-2 data
+# DT2 <- fread(file.path('data/alpha-2 pooled.csv'))
+# DT2 <- DT2[PCR=='MM2F_S3R']
+# write.csv(DT2,'data/mm2f_alpha2_pooled.csv', row.names = F)
+
+DT2 = fread(file.path('data/mm2f_alpha2_pooled.csv'))
+DT2 = DT2[keyDT,on='subject',nomatch=0] # match barcode to macaque id 
+head(DT2)
 
 #examine reads/sample
 p <- ggplot(DT2[,.(count=sum(count)),by=subject],aes(count))
@@ -116,6 +111,8 @@ fDT2[,.(freq=max(freq)),by=uniqueseq] #max freq
 #by contrast:
 DT2[,.(freq=max(freq)),by=uniqueseq]
 
+
+#########
 #heatmaps
 
 #add missing zeros
