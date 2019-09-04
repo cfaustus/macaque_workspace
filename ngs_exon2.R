@@ -38,9 +38,10 @@ DT1_counts <- DT1[freq>2]
 DT1_counts = DT1_counts[,.(count=sum(value)),by=subject_id]
 mean(DT1_counts$count)
 #eliminate the those less than 1000
-DT1_trun = DT1[subject_id!='Mf1_42']
-DT1_trun = DT1_trun[subject_id!='Mf1_51']
+DT1_trun = DT1[subject_id!='Mf1_51']
+#DT1_trun = DT1_trun[subject_id!='Mf1_42']
 
+#length(unique(DT1_trun$subject_id))
 p = ggplot(DT1_trun,aes(freq))
 p+geom_histogram()
 p+geom_histogram() + xlim(0,2) +ylim(0,20) #there's a cluster under ~1.7%, with a fairly normal distribution
@@ -98,11 +99,11 @@ DT2_counts = DT2_counts[,.(count=sum(count)),by=subject_id]
 mean(DT2_counts$count)
 #let's eliminate the very lowest
 head(DT2)
+DT2_trun = DT2[subject_id!='Mf1_51']
 #DT2_trun = DT2[subject_id!='Mf1_24']
 #DT2_trun = DT2_trun[subject_id!='Mf1_31']
-DT2_trun = DT2_trun[subject_id!='Mf1_42']
-DT2_trun = DT2_trun[subject_id!='Mf1_51']
-DT2_trun = DT2_trun[subject_id!='Mf1_59']
+#DT2_trun = DT2_trun[subject_id!='Mf1_42']
+#DT2_trun = DT2_trun[subject_id!='Mf1_59']
 #DT2_trun = DT2_trun[subject_id!='Mf1_61']
 
 #frequency of individual sequences
