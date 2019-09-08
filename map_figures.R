@@ -33,7 +33,7 @@ library(raster)
 ### Phenotype Map
 dat = read.csv("data/phenotype_ltmacaque_data.csv", header = T)
 head(dat)
-fascicularis_range=readOGR("data/Macaca fascicularis.shp")
+fascicularis_range=readOGR("data/macaques/Macaca fascicularis.shp")
 
 # c('A','Q','P','AQ','AP','AQP',
 #   'QP','AX','AQX','APX','QPX'), 
@@ -65,7 +65,7 @@ legend(123, 4.3,
        c('A','Q','AQ','AX','AQX',
          'other'), 
        fill = col_pal,
-       bty = 'o', box.col = 'white',cex = 0.7,
+       bty = 'o', box.col = 'white',cex = 1.1,
        bg = alpha('grey80',0.75))
 segments(97.5,-1,97.5,-10, lwd=2)
 segments(97.5,-1,97.8,-1, lwd=2)
