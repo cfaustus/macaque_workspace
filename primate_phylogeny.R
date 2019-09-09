@@ -1,10 +1,9 @@
 #creating a phylogeny of primates with alpha globin stats
-setwd("/Users/cfaust/Dropbox/Princeton/Projects/SimianMalaria/AlphaGlobinOX/macaquephylogeny")
 library(ape)
 library(phytools)
 
 #import binida edmonds mammalian super tree
-mammalsbest <- read.nexus("Bininda-emonds_2007_mammals_best.nex")
+mammalsbest <- read.nexus("data/Bininda-emonds_2007_mammals_best.nex")
 #plot(mammalsbest)
 #mammalsbest$tip.label
 macaques<- c("Macaca_arctoides","Macaca_assamensis","Macaca_thibetana","Macaca_radiata","Macaca_sinica","Macaca_cyclopis","Macaca_mulatta","Macaca_fuscata",
@@ -32,11 +31,11 @@ plot(macaques.pruned,type="phylogram",
      label.offset=0, font=3, cex=0.7,
      tip.color=tipcol, adj=1)
 
-
-
-#10K has more species
-
-macaques10k<- read.nexus("consensusTree_10kTrees_macaca_down_vs2.nex")
-                         consensusTree_10kTrees_macaca_down_12Jan2014.nex")
-plot(macaques10k)
-#plot with different edge colors for macaques with AQ
+# 
+# 
+# #10K has more species
+# 
+# macaques10k<- read.nexus("consensusTree_10kTrees_macaca_down_vs2.nex")
+#                          consensusTree_10kTrees_macaca_down_12Jan2014.nex")
+# plot(macaques10k)
+# #plot with different edge colors for macaques with AQ
