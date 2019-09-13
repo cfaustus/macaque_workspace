@@ -4,7 +4,7 @@
 
 //This programme needs to be compiled as a MEX file and run in Matlab.
 
-//The script "runAlphaGlobinPopulationGeneticModel" facilitates running
+//The script "MatlabScriptToRunPopulationGeneticModel.m" facilitates running
 //the MEX file in Matlab.
 
 //The programme uses the Mersenne Twister random number generator
