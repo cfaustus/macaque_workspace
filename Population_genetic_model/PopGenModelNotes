@@ -1,1 +1,5 @@
+Please note: AlphaGlobinPopulationGeneticModel.c 
+must be compiled as a Mex file within Matlab, then the script
+MatlabScriptToRunPopulationGeneticModel can be used to define
+the parameters of the model, and run the model.
 
