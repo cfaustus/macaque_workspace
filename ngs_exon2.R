@@ -18,9 +18,10 @@ setnames(keyDT,c('Sample.ID','barcode_ID'),c('subject_id','subject'))
 # load alpha-1 data
 # DT1 <- fread(file.path('data/alpha-1 pooled.csv'))
 # unique(DT1$PCR)
-# DT1 <- DT1[PCR=='MM2F_S3R']
+
 # write.csv(DT1,'data/mm2f_alpha1_pooled.csv', row.names = F)
 DT1 = fread(file.path('data/alpha-1 pooled.csv'))
+DT1 <- DT1[PCR=='MM2F_S3R']
 head(DT1)
 DT1 = DT1[keyDT,on='subject',nomatch=0]
 p = ggplot(DT1[,.(value=sum(value)),by=subject],aes(value))
@@ -37,7 +38,7 @@ head(DT1)
 DT1_counts <- DT1[freq>2]
 DT1_counts = DT1_counts[,.(count=sum(value)),by=subject_id]
 mean(DT1_counts$count)
-#eliminate the those less than 1000
+#eliminate the those less than 100
 DT1_trun = DT1[subject_id!='Mf1_51']
 #DT1_trun = DT1_trun[subject_id!='Mf1_42']
 
@@ -50,7 +51,7 @@ setkey(DT1_trun,freq)
 DT1_trun[value>0,freq] #check by eyeballing - a 2% cut is fine (the gap is between 1.7% and 2.6%)
 fDT1 <- DT1_trun[freq>2]
 fDT1[,sum(freq)]/DT1_trun[,sum(freq)]#how many reads were removed?
-# 0.9924921 #<2% removed
+# 0.9867369 #<2% removed
 HBA1 = read.csv("data/seq_conversion_HBA1.csv", header = T)
 fDT1 = fDT1[HBA1,on='uniqueseq',nomatch=0] # match barcode to macaque id 
 fDT1$converted_name = ordered(fDT1$converted_name, 
@@ -101,8 +102,8 @@ mean(DT2_counts$count)
 #let's eliminate the very lowest
 head(DT2)
 DT2_trun = DT2[subject_id!='Mf1_51']
-DT2_trun = DT2_trun[subject_id!='Mf1_42']
-DT2_trun = DT2_trun[subject_id!='Mf1_59']
+#DT2_trun = DT2_trun[subject_id!='Mf1_42']
+#DT2_trun = DT2_trun[subject_id!='Mf1_59']
 #DT2_trun = DT2_trun[subject_id!='Mf1_42']
 #DT2_trun = DT2_trun[subject_id!='Mf1_59']
 #DT2_trun = DT2_trun[subject_id!='Mf1_61']
