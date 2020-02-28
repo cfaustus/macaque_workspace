@@ -31,11 +31,3 @@ plot(macaques.pruned,type="phylogram",
      label.offset=0, font=3, cex=0.7,
      tip.color=tipcol, adj=1)
 
-# 
-# 
-# #10K has more species
-# 
-# macaques10k<- read.nexus("consensusTree_10kTrees_macaca_down_vs2.nex")
-#                          consensusTree_10kTrees_macaca_down_12Jan2014.nex")
-# plot(macaques10k)
-# #plot with different edge colors for macaques with AQ
