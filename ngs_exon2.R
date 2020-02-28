@@ -20,7 +20,7 @@ setnames(keyDT,c('Sample.ID','barcode_ID'),c('subject_id','subject'))
 # unique(DT1$PCR)
 # DT1 <- DT1[PCR=='MM2F_S3R']
 # write.csv(DT1,'data/mm2f_alpha1_pooled.csv', row.names = F)
-DT1 = fread(file.path('data/mm2f_alpha1_pooled.csv'))
+DT1 = fread(file.path('data/alpha-1 pooled.csv'))
 head(DT1)
 DT1 = DT1[keyDT,on='subject',nomatch=0]
 p = ggplot(DT1[,.(value=sum(value)),by=subject],aes(value))
@@ -50,7 +50,7 @@ setkey(DT1_trun,freq)
 DT1_trun[value>0,freq] #check by eyeballing - a 2% cut is fine (the gap is between 1.7% and 2.6%)
 fDT1 <- DT1_trun[freq>2]
 fDT1[,sum(freq)]/DT1_trun[,sum(freq)]#how many reads were removed?
-# 0.986907 #<2% removed
+# 0.9924921 #<2% removed
 HBA1 = read.csv("data/seq_conversion_HBA1.csv", header = T)
 fDT1 = fDT1[HBA1,on='uniqueseq',nomatch=0] # match barcode to macaque id 
 fDT1$converted_name = ordered(fDT1$converted_name, 
@@ -78,7 +78,8 @@ length(fDT1[,unique(uniqueseq)])
 # DT2 <- DT2[PCR=='MM2F_S3R']
 # write.csv(DT2,'data/mm2f_alpha2_pooled.csv', row.names = F)
 
-DT2 = fread(file.path('data/mm2f_alpha2_pooled.csv'))
+DT2 = fread(file.path('data/alpha-2 pooled.csv'))
+DT2 <- DT2[PCR=='MM2F_S3R']
 DT2 = DT2[keyDT,on='subject',nomatch=0] # match barcode to macaque id 
 head(DT2)
 
@@ -89,10 +90,10 @@ p+geom_histogram(bins=20) + xlim(0,2500)
 p+geom_histogram(bins=20) + xlim(0,1000)
 #there is only one very low sample :
 DT2[,.(count=sum(count)),by=subject_id][count<500]
-## subject_id count
-# 3:     Mf1_42   320
-# 4:     Mf1_51     9
-# 5:     Mf1_59   349
+# subject_id count
+# 1:     Mf1_42   320
+# 2:     Mf1_51     9
+# 3:     Mf1_59   349
 
 DT2_counts <- DT2[freq>2]
 DT2_counts = DT2_counts[,.(count=sum(count)),by=subject_id]
@@ -100,8 +101,8 @@ mean(DT2_counts$count)
 #let's eliminate the very lowest
 head(DT2)
 DT2_trun = DT2[subject_id!='Mf1_51']
-#DT2_trun = DT2[subject_id!='Mf1_24']
-#DT2_trun = DT2_trun[subject_id!='Mf1_31']
+DT2_trun = DT2_trun[subject_id!='Mf1_42']
+DT2_trun = DT2_trun[subject_id!='Mf1_59']
 #DT2_trun = DT2_trun[subject_id!='Mf1_42']
 #DT2_trun = DT2_trun[subject_id!='Mf1_59']
 #DT2_trun = DT2_trun[subject_id!='Mf1_61']
@@ -116,9 +117,9 @@ DT2_trun[count>0,freq] #check by eyeballing - a 2% cut is fine (the gap is betwe
 fDT2 = DT2_trun[freq>2]
 
 #how many reads were removed?
-fDT2[,sum(freq)]/DT2_trun[,sum(freq)]# [1] 0.9786663#<3% removed
+fDT2[,sum(freq)]/DT2_trun[,sum(freq)]# [1] 0.9787715#<3% removed
 length(fDT2[,unique(uniqueseq)]) #12 unique sequences left
-length(fDT2[,unique(subject)])# [1] 72 macaques left
+length(fDT2[,unique(subject)])# [1] 75 macaques left
 fDT2[,.(freq=sum(freq)/length(fDT2[,unique(subject)])),by=uniqueseq] #mean freq
 fDT2[,.(freq=max(freq)),by=uniqueseq] #max freq
 #all look real (lowest max is 23%)
@@ -153,7 +154,7 @@ blue13 = c('grey95', 'grey90', '#0570b0',
            'grey70', 'grey65', 'grey60', '#bdc9e1',
            'grey55', 'grey50', 'grey45')
 fDT1$freq_wo2 = fDT1$freq_wo2*100
-
+fDT1$converted_name
 p = ggplot(fDT1,aes(x=factor(1),y=freq_wo2,fill=converted_name))
 p1 = p + 
   geom_bar(stat = "identity",  position = "stack")   +
