@@ -2,13 +2,14 @@
 library(ape)
 library(phytools)
 
-#import binida edmonds mammalian super tree
+# importing mammalian supertree from Bininda-Emonds et al. 2007
+# https://doi.org/10.1038/nature05634
 mammalsbest <- read.nexus("data/Bininda-emonds_2007_mammals_best.nex")
-#plot(mammalsbest)
-#mammalsbest$tip.label
-macaques<- c("Macaca_arctoides","Macaca_assamensis","Macaca_thibetana","Macaca_radiata","Macaca_sinica","Macaca_cyclopis","Macaca_mulatta","Macaca_fuscata",
+
+macaques <- c("Macaca_arctoides","Macaca_assamensis","Macaca_thibetana","Macaca_radiata","Macaca_sinica","Macaca_cyclopis","Macaca_mulatta","Macaca_fuscata",
             "Macaca_fascicularis","Macaca_maura","Macaca_nigra","Macaca_ochreata","Macaca_tonkeana","Macaca_nemestrina","Macaca_silenus","Macaca_sylvanus")
-macaques.pruned<-drop.tip(mammalsbest,mammalsbest$tip.label[-match(macaques, mammalsbest$tip.label)])
+macaques.pruned <- drop.tip(mammalsbest,mammalsbest$tip.label[-match(macaques, mammalsbest$tip.label)])
+
 plot(macaques.pruned)
 nodelabels()
 edgelabels()
