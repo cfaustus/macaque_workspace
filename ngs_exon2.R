@@ -154,19 +154,28 @@ blue13 = c('grey95', 'grey90', '#0570b0',
            'grey80', '#74a9cf','grey75',
            'grey70', 'grey65', 'grey60', '#bdc9e1',
            'grey55', 'grey50', 'grey45')
+library(wesanderson)
+library(RColorBrewer)
+
+col_alt = wes_palette('Darjeeling1', 13, type = "continuous")
+col_alt[13]
+hba1col= c("#00A08A","#50A45C","#FF0000","#A1A82E","#AA352D",
+           "#F2AD00","#F98400","#C49647",
+           "#8FA98E",'#67001f',"#5BBCD6","#556A5B", "#2c3830")
 fDT1$freq_wo2 = fDT1$freq_wo2*100
 fDT1$converted_name
 p = ggplot(fDT1,aes(x=factor(1),y=freq_wo2,fill=converted_name))
 p1 = p + 
   geom_bar(stat = "identity",  position = "stack")   +
-  scale_fill_manual("unique sequences",values=blue13) +
+  scale_fill_manual("unique sequences",values = hba1col) +
   geom_hline(yintercept=25,linetype='solid') +
   geom_hline(yintercept=50,linetype='solid') +
   geom_hline(yintercept=75,linetype='solid') +
   geom_hline(yintercept=16.7,linetype='dashed') +
   geom_hline(yintercept=33.3,linetype='dashed') +
   geom_hline(yintercept=66.7,linetype='dashed') +
-  geom_hline(yintercept=83.3,linetype='dashed') 
+  geom_hline(yintercept=83.3,linetype='dashed') + 
+  labs(y = 'percentage of reads')
 
 p1 +#theme(axis.text.x=element_text(angle=90,vjust=0.45)) +
   facet_wrap(~subject_id,nrow=6) + 
@@ -181,17 +190,23 @@ p1 +#theme(axis.text.x=element_text(angle=90,vjust=0.45)) +
 head(fDT2)
 fDT2$freq_wo2 = fDT2$freq_wo2*100
 p = ggplot(fDT2,aes(x=factor(1),y=freq_wo2,fill=converted_name))
+
 red13 = c('#67001f', 'grey95',  'grey90','#b2182b',  'grey80', 'grey75', 'grey70', 'grey65', 'grey60', 'grey55', 'grey50', '#d6604d')
+hba2col = col_alt
+hba2col= c("#FF0000","#00A08A","#50A45C","#AA352D","#A1A82E",
+           "#F2AD00","#F98400","#C49647",
+           "#8FA98E","#5BBCD6","#556A5B",'#67001f')
 p1 = p + 
 	geom_bar(stat = "identity",  position = "stack")   +
-	scale_fill_manual("unique sequences",values=red13) +
+	scale_fill_manual("unique sequences",values=hba2col) +
 	geom_hline(yintercept=25,linetype='solid') +
 	geom_hline(yintercept=50,linetype='solid') +
 	geom_hline(yintercept=75,linetype='solid') +
 	geom_hline(yintercept=16.7,linetype='dashed') +
 	geom_hline(yintercept=33.3,linetype='dashed') +
 	geom_hline(yintercept=66.7,linetype='dashed') +
-	geom_hline(yintercept=83.3,linetype='dashed') 
+	geom_hline(yintercept=83.3,linetype='dashed') + 
+  labs(y = 'percentage of reads')
 
 p1 +#theme(axis.text.x=element_text(angle=90,vjust=0.45)) +
 	facet_wrap(~subject_id,nrow=6) + 
