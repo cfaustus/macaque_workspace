@@ -53,7 +53,7 @@ plot(fascicularis_range, add=TRUE, col=alpha("grey10",0.3), border=FALSE)
 for(i in 1:nrow(dat)) {
   add.pie(z=c(dat$A[i],dat$Q[i], dat$AQ[i], dat$AX[i], dat$AQX[i],
               (dat$P[i]+dat$AP[i]+dat$AQP[i]+dat$QP[i]+dat$APX[i]+dat$QPX[i])), 
-          radius=sqrt(dat$total[i])/8.5, 
+          radius=sqrt(dat$total[i])/8.2, 
           x=dat$long[i], y=dat$lat[i], lty = 0,
           col= col_pal,
           #c(alpha(col_pal, 0.6))
@@ -67,9 +67,12 @@ legend(121, 4.3,
        fill = col_pal,
        bty = 'o', box.col = 'white',cex = 0.8,
        bg = alpha('grey80',0.75))
-segments(97.5,-1,97.5,-10, lwd=2)
+segments(97.5,-1,97.5,-10, lwd=2) #vertical bar
 segments(97.5,-1,97.8,-1, lwd=2)
 segments(97.5,-10,97.8,-10, lwd=2)
+segments(127,17,127,8, lwd=2)
+segments(127,17,126.7,17, lwd=2)
+segments(127,8,126.7,8, lwd=2)
 #export as 5x5 PDF
 
 ###########
