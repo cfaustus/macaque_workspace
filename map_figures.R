@@ -50,7 +50,8 @@ map("world", xlim=c(93,130), ylim=c(-11.5,23),
 plot(fascicularis_range, add=TRUE, col=alpha("grey10",0.3), border=FALSE)
 #points(dat$long, dat$lat, pch=19, col="red", cex=0.5,)  #plot sites to check locations
 # phenotypes A	AQ	Q	P	AP	QP	AQP	AX	AQX	APX	QPX
-for(i in 1:nrow(dat)) {
+segments(103.8,1.36,105.5,0.97, lwd=1)
+for(i in 1:nrow(dat)){
   add.pie(z=c(dat$A[i],dat$Q[i], dat$AQ[i], dat$AX[i], dat$AQX[i],
               (dat$P[i]+dat$AP[i]+dat$AQP[i]+dat$QP[i]+dat$APX[i]+dat$QPX[i])), 
           radius=sqrt(dat$total[i])/8.2, 
