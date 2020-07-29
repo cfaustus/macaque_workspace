@@ -6,8 +6,12 @@ library(phytools)
 # https://doi.org/10.1038/nature05634
 mammalsbest <- read.nexus("data/Bininda-emonds_2007_mammals_best.nex")
 
-macaques <- c("Macaca_arctoides","Macaca_assamensis","Macaca_thibetana","Macaca_radiata","Macaca_sinica","Macaca_cyclopis","Macaca_mulatta","Macaca_fuscata",
-            "Macaca_fascicularis","Macaca_maura","Macaca_nigra","Macaca_ochreata","Macaca_tonkeana","Macaca_nemestrina","Macaca_silenus","Macaca_sylvanus")
+macaques <- c("Macaca_arctoides","Macaca_assamensis","Macaca_thibetana",
+              "Macaca_radiata","Macaca_sinica","Macaca_cyclopis",
+              "Macaca_mulatta","Macaca_fuscata","Macaca_fascicularis",
+              "Macaca_maura","Macaca_nigra","Macaca_ochreata",
+              "Macaca_tonkeana","Macaca_nemestrina","Macaca_silenus",
+              "Macaca_sylvanus")
 macaques.pruned <- drop.tip(mammalsbest,mammalsbest$tip.label[-match(macaques, mammalsbest$tip.label)])
 
 plot(macaques.pruned)
@@ -15,7 +19,7 @@ nodelabels()
 edgelabels()
 tiplabels()
 edgecol <- rep('black', length(macaques.pruned$edge.length))
-edgecol[c(17,26,9,3)] <- 'red3'
+edgecol[c(17,26,9,3, 10,7)] <- 'red3'
 # change lines for macaques that we do not have hemoglobin types
 edgelty <- rep(1, length(macaques.pruned$edge.length) )
 edgelty[c(28,27,10,7,6)] <- 3
