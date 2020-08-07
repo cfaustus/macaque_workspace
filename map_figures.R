@@ -61,12 +61,12 @@ for(i in 1:nrow(dat)){
           labels="")
 }
 # legend ####
-legend(121, 4.3, 
+legend(120, 4.3, 
        title = 'phenotypes ',
        c('A','Q','AQ','AX','AQX',
          'other'), 
        fill = col_pal,
-       bty = 'o', box.col = 'white',cex = 0.8,
+       bty = 'o', box.col = 'white',cex = 0.97,
        bg = alpha('grey80',0.75))
 segments(97.5,-1,97.5,-10, lwd=2) #vertical bar
 segments(97.5,-1,97.8,-1, lwd=2)
