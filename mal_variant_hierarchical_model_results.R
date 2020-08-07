@@ -1,10 +1,11 @@
 #####
-## SI plotting scenarios 
-## christina.faust@gmail.com
+## SI plotting scenarios
 ## 2018 june 07
 #####
 
 library(scales)
+
+scenarios = read.csv('output/bayesian_scenarios.csv', header = TRUE)
 
 par(las = 1)
 hist(scenarios$t1.0, col= alpha('darkgoldenrod4', 0.4),
