@@ -19,15 +19,24 @@ nodelabels()
 edgelabels()
 tiplabels()
 edgecol <- rep('black', length(macaques.pruned$edge.length))
-edgecol[c(17,26,9,3, 10,7)] <- 'red3'
+edgecol[c(17,26,9,3, 10, 6)] <- 'red3'
 # change lines for macaques that we do not have hemoglobin types
 edgelty <- rep(1, length(macaques.pruned$edge.length) )
-edgelty[c(28,27,10,7,6)] <- 3
-# change line with to reflect the log (base10) of th
+edgelty[c(28,27,7)] <- 3
+# change line with to reflect the log (base10) of sample size
 edgewidth<- rep(1.5,length(macaques.pruned$edge.length))
 edgewidth[c(26,22,17,16,15,14,24,23,20,9,3)] <- 
-  c(log10(510),log10(53),log10(2371),log10(2539),
-    log10(633),log10(301),log10(49),log10(18),log10(66),log10(38),log10(256))
+  c(log10(255),#nemestrina
+    log10(75),#nigra
+    log10(2371),#fascicularis
+    log10(1271), #fuscata
+    log10(533), #mulatta
+    log10(152), #cyclopis
+    log10(49), #tonkeana
+    log10(18), #ochreata
+    log10(66), #maura
+    log10(43), #radiata
+    log10(247)) #arctoides
 tipcol<- rep('black',length(macaques.pruned$tip.label))
 #tipcol[c(2,10,15)]<-'red3'
 tipcol[c(2,3,10,12,13,15,16)]<-'gray62'
