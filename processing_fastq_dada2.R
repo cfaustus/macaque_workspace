@@ -3,10 +3,14 @@
 # Authored by Stephen Preston
 # dada2 v1.12 used
 
+
+BiocManager::install("dada2", version = "1.12") # new version
 library(dada2)
 library(Biostrings)
 library(DECIPHER)
 library(data.table)
+
+
 
 #a function to print the quality profiles of supplied fastq read files (using dada2)
 checkqual <- function(fns){
